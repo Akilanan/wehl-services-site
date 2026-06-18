@@ -385,7 +385,9 @@ setTimeout(()=>document.querySelectorAll('.reveal:not(.in)').forEach(e=>{e.style
 
 const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 // rotating hero word (Slack-style word-swap) from the services
-(function(){const el=$("rot");if(!el||reduce)return;const words=C.services.map(s=>s.t.toLowerCase());let i=0;
+(function(){const el=$("rot");if(!el)return;const words=C.services.map(s=>s.t.toLowerCase());let i=0;
+  el.textContent=words[0]||el.textContent;        // start from THIS business's real first service (no flash of wrong trade)
+  if(reduce)return;
   setInterval(()=>{i=(i+1)%words.length;el.style.animation='none';el.offsetHeight;el.textContent=words[i];el.style.animation='';},1900);})();
 // count-up trust numbers on view
 function countUp(el){const m=(el.textContent||'').match(/^(\D*)([\d.]+)(\D*)$/);if(!m)return;const pre=m[1],end=parseFloat(m[2]),suf=m[3],dec=(m[2].split('.')[1]||'').length;let t0=null;
