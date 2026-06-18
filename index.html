@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- ════════════════════════════════════════════════════════════════════
+     TRADIE SITE TEMPLATE — by TradieSites. To customise for a prospect,
+     edit ONLY the CONFIG block below (name, trade, phone, suburb, services,
+     colour). Everything else adapts automatically. Then deploy / send.
+     ════════════════════════════════════════════════════════════════════ -->
+<title>Loading…</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23123a5e'/%3E%3Cpath d='M9 20l5-9 4 6 2-3 3 6z' fill='%23ffb320'/%3E%3C/svg%3E" />
+<style>
+  :root{
+    --brand:#123a5e;       /* edit to match the tradie's van/logo */
+    --brand2:#0d2c47;
+    --accent:#f7a823;      /* high-vis CTA colour */
+    --ink:#10151b; --body:#3d4a59; --muted:#6b7888;
+    --bg:#ffffff; --bg2:#f4f7fb; --line:#e3e9f1; --white:#fff;
+    --ok:#1f9d55;
+    --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);color:var(--body);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  h1,h2,h3{color:var(--ink);line-height:1.12;letter-spacing:-.02em;font-weight:800}
+  section{padding:72px 0}
+  .reveal{opacity:0;transform:translateY(22px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+  .btn{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#241803;font-weight:800;padding:15px 26px;border-radius:11px;font-size:1.02rem;border:0;cursor:pointer;box-shadow:0 10px 26px -10px rgba(247,168,35,.7);transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost{background:transparent;border:2px solid rgba(255,255,255,.5);color:#fff;box-shadow:none}
+  .btn.dark{background:var(--brand);color:#fff;box-shadow:none}
+
+  /* top trust bar */
+  .tbar{background:var(--brand2);color:#cfe0f0;font-size:.86rem}
+  .tbar .wrap{display:flex;justify-content:space-between;align-items:center;height:38px;gap:14px}
+  .tbar .r{display:flex;gap:18px}@media(max-width:640px){.tbar .r span:nth-child(2){display:none}}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;color:var(--ink);font-size:1.18rem}
+  .brand .mk{width:38px;height:38px;border-radius:9px;background:var(--brand);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.2rem}
+  .nlinks{display:flex;gap:26px;align-items:center}
+  .nlinks a{color:var(--body);font-weight:600;font-size:.95rem}
+  .nlinks a:hover{color:var(--brand)}
+  .ncall{font-weight:800;color:var(--brand)!important;font-size:1rem}
+  @media(max-width:780px){.nlinks a:not(.ncall){display:none}}
+
+  /* hero */
+  header{position:relative;background:linear-gradient(125deg,var(--brand),var(--brand2));color:#fff;overflow:hidden}
+  header::after{content:"";position:absolute;right:-120px;top:-80px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(247,168,35,.22),transparent 65%)}
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:64px 0 70px;position:relative;z-index:1}
+  @media(max-width:880px){.hero{grid-template-columns:1fr;gap:30px;padding:46px 0 54px}}
+  .hero .pill{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:7px 15px;border-radius:100px;font-size:.84rem;font-weight:600;margin-bottom:18px}
+  .hero h1{color:#fff;font-size:clamp(2.1rem,5vw,3.4rem);margin-bottom:16px}
+  .hero p{color:#d6e4f2;font-size:1.16rem;max-width:520px;margin-bottom:26px}
+  .hero .cta{display:flex;gap:13px;flex-wrap:wrap}
+  .hero .feats{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;color:#cfe0f0;font-size:.92rem}
+  .hero .feats b{color:#fff}
+  .hcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:26px;backdrop-filter:blur(4px)}
+  .hcard h3{color:#fff;font-size:1.15rem;margin-bottom:14px}
+  .hcard .qrow{display:flex;flex-direction:column;gap:11px}
+  .hcard input,.hcard select{width:100%;padding:12px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.95);color:var(--ink);font-family:inherit;font-size:.95rem}
+  .hcard .fine{color:#9fb8d0;font-size:.78rem;margin-top:10px;text-align:center}
+
+  /* trust strip */
+  .strip{background:var(--bg2);border-bottom:1px solid var(--line)}
+  .strip .wrap{display:flex;justify-content:space-around;gap:18px;flex-wrap:wrap;padding:22px}
+  .strip .it{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ink);font-size:.96rem}
+  .strip .it .i{color:var(--ok);font-size:1.3rem}
+
+  .stitle{text-align:center;max-width:640px;margin:0 auto 46px}
+  .stitle .k{color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.82rem}
+  .stitle h2{font-size:clamp(1.8rem,4vw,2.5rem);margin:12px 0}
+  .stitle p{color:var(--muted);font-size:1.05rem}
+
+  /* services */
+  .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:820px){.svc{grid-template-columns:1fr}}
+  .scard{background:var(--white);border:1px solid var(--line);border-radius:15px;padding:26px;transition:.2s}
+  .scard:hover{box-shadow:0 18px 40px -22px rgba(18,58,94,.4);transform:translateY(-4px);border-color:transparent}
+  .scard .ic{width:52px;height:52px;border-radius:12px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:15px}
+  .scard h3{font-size:1.2rem;margin-bottom:7px}
+  .scard p{color:var(--muted);font-size:.96rem}
+
+  /* why / about split */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  @media(max-width:820px){.split{grid-template-columns:1fr;gap:28px}}
+  .why li{display:flex;gap:13px;margin-bottom:16px;align-items:flex-start}
+  .why .c{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;margin-top:2px}
+  .why h3{font-size:1.05rem;color:var(--ink)}
+  .why p{color:var(--muted);font-size:.94rem}
+  .photo{background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:18px;min-height:330px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:5rem;position:relative;overflow:hidden}
+  .photo span{position:absolute;bottom:18px;left:20px;font-size:.85rem;color:rgba(255,255,255,.7)}
+
+  /* reviews */
+  #reviews{background:var(--bg2)}
+  .revs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:820px){.revs{grid-template-columns:1fr}}
+  .rev{background:var(--white);border:1px solid var(--line);border-radius:15px;padding:24px}
+  .rev .stars{color:var(--accent);font-size:1.05rem;letter-spacing:2px}
+  .rev p{margin:12px 0;color:var(--body);font-size:.98rem}
+  .rev .who{font-weight:700;color:var(--ink);font-size:.92rem}
+  .rev .who span{color:var(--muted);font-weight:500}
+
+  /* area */
+  .area{text-align:center}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
+  .chip{background:var(--bg2);border:1px solid var(--line);border-radius:100px;padding:8px 17px;font-weight:600;color:var(--ink);font-size:.92rem}
+
+  /* CTA band */
+  .band{background:linear-gradient(125deg,var(--brand),var(--brand2));color:#fff;text-align:center;border-radius:22px;padding:54px 26px;position:relative;overflow:hidden}
+  .band h2{color:#fff;font-size:clamp(1.7rem,4vw,2.5rem);margin-bottom:12px}
+  .band p{color:#d6e4f2;margin-bottom:24px;font-size:1.1rem}
+
+  footer{background:var(--ink);color:#9aa7b8;padding:40px 0 110px;font-size:.9rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  footer .brand{color:#fff}.footer-mk .mk{background:rgba(255,255,255,.1)}
+  footer a{color:#cfe0f0}
+
+  /* sticky mobile call bar */
+  .callbar{position:fixed;bottom:0;left:0;right:0;z-index:50;display:none;gap:0;box-shadow:0 -6px 20px rgba(0,0,0,.18)}
+  .callbar a{flex:1;text-align:center;padding:15px;font-weight:800;color:#fff;font-size:1rem}
+  .callbar .c{background:var(--ok)} .callbar .q{background:var(--accent);color:#241803}
+  @media(max-width:780px){.callbar{display:flex}footer{padding-bottom:90px}}
+  .built{display:block;text-align:center;padding:12px;font-size:.78rem;color:var(--muted);background:var(--bg2)}
+</style>
+</head>
+<body>
+
+<div class="tbar"><div class="wrap">
+  <span id="tb-lic">Licensed & Fully Insured</span>
+  <div class="r"><span id="tb-hours">Mon–Sat 7am–6pm</span><span>📞 <b id="tb-phone"></b></span></div>
+</div></div>
+
+<nav><div class="wrap">
+  <a class="brand" href="#"><span class="mk" id="nv-mk">⚡</span><span id="nv-name"></span></a>
+  <div class="nlinks">
+    <a href="#services">Services</a><a href="#why">Why us</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+    <a class="ncall" id="nv-call" href="#">📞 <span id="nv-phone"></span></a>
+  </div>
+</div></nav>
+
+<header><div class="wrap hero">
+  <div class="reveal">
+    <span class="pill" id="h-pill">⭐ Trusted local since 2014</span>
+    <h1 id="h-head"></h1>
+    <p id="h-sub"></p>
+    <div class="cta">
+      <a class="btn" id="h-call" href="#">📞 Call now</a>
+      <a class="btn ghost" href="#contact">Get a free quote</a>
+    </div>
+    <div class="feats">
+      <span>✅ <b>Same-day</b> callouts</span>
+      <span>✅ <b>Upfront</b> pricing</span>
+      <span>✅ <b>5★</b> rated locally</span>
+    </div>
+  </div>
+  <div class="hcard reveal">
+    <h3>Get a fast free quote</h3>
+    <form class="qrow" id="qform">
+      <input required placeholder="Your name" id="q-name" />
+      <input required placeholder="Phone number" id="q-phone" />
+      <select id="q-job"></select>
+      <input placeholder="Suburb" id="q-sub" />
+      <button class="btn" style="width:100%;justify-content:center" type="submit">Send my request →</button>
+    </form>
+    <div class="fine">No obligation · we reply fast · or just call us direct</div>
+  </div>
+</div></header>
+
+<div class="strip"><div class="wrap">
+  <div class="it"><span class="i">✔</span> Licensed & Insured</div>
+  <div class="it"><span class="i">✔</span> Free Written Quotes</div>
+  <div class="it"><span class="i">✔</span> Workmanship Guaranteed</div>
+  <div class="it"><span class="i">✔</span> Local & Reliable</div>
+</div></div>
+
+<section id="services"><div class="wrap">
+  <div class="stitle reveal"><div class="k">What we do</div><h2 id="sv-h">Our Services</h2><p id="sv-p"></p></div>
+  <div class="svc" id="sv-grid"></div>
+</div></section>
+
+<section id="why" style="background:var(--bg2)"><div class="wrap split">
+  <div class="reveal">
+    <div class="stitle" style="text-align:left;margin:0 0 24px"><div class="k">Why choose us</div><h2 id="wy-h"></h2></div>
+    <ul class="why" id="wy-list"></ul>
+  </div>
+  <div class="photo reveal" id="wy-photo">🛠️<span>Add your team / van / job photos here</span></div>
+</div></section>
+
+<section id="reviews"><div class="wrap">
+  <div class="stitle reveal"><div class="k">Don't take our word for it</div><h2>What local customers say</h2><p>Real reviews from real jobs around the area.</p></div>
+  <div class="revs" id="rv-grid"></div>
+</div></section>
+
+<section class="area"><div class="wrap reveal">
+  <div class="stitle" style="margin-bottom:0"><div class="k">Service area</div><h2 id="ar-h"></h2><p id="ar-p"></p></div>
+  <div class="chips" id="ar-chips"></div>
+</div></section>
+
+<section id="contact"><div class="wrap reveal">
+  <div class="band">
+    <h2 id="cta-h"></h2>
+    <p id="cta-p"></p>
+    <div class="cta" style="justify-content:center">
+      <a class="btn" id="cta-call" href="#">📞 Call <span id="cta-phone"></span></a>
+      <a class="btn dark" id="cta-wa" target="_blank" rel="noopener">💬 WhatsApp us</a>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div>
+    <a class="brand footer-mk" href="#"><span class="mk" id="ft-mk">⚡</span><span id="ft-name"></span></a>
+    <p style="margin-top:10px" id="ft-tag"></p>
+  </div>
+  <div>
+    <p>📞 <a id="ft-call" href="#"></a></p>
+    <p id="ft-hours" style="margin-top:4px"></p>
+    <p id="ft-lic" style="margin-top:4px"></p>
+  </div>
+</div></footer>
+<div class="built">Website by <b>TradieSites</b> — fast sites that win tradies more work.</div>
+
+<div class="callbar">
+  <a class="c" id="bar-call" href="#">📞 Call now</a>
+  <a class="q" href="#contact">Free quote</a>
+</div>
+
+<script>
+/* ═══════════════ EDIT THIS BLOCK PER PROSPECT (≈2 min) ═══════════════ */
+const CONFIG = {
+  "name": "Wehl Services",
+  "trade": "Handyman",
+  "icon": "🔨",
+  "phone": "+61 438 802 995",
+  "suburb": "Ballarat",
+  "region": "Ballarat & surrounds",
+  "since": "2015",
+  "hours": "Mon–Sat 7am–6pm",
+  "brandColor": "#123a5e",
+  "headline": "Reliable Ballarat Handymans — done right, first time.",
+  "sub": "Fast, friendly, fully-licensed handyman work for homes & businesses. Same-day callouts, upfront pricing, and workmanship we guarantee.",
+  "servicesIntro": "No job too big or small — here's how we can help.",
+  "services": [
+    {
+      "ic": "🔧",
+      "t": "Repairs & Maintenance",
+      "d": "Doors, locks, leaks, fixtures — the to-do list, sorted."
+    },
+    {
+      "ic": "🪛",
+      "t": "Assembly & Mounting",
+      "d": "Flat-pack, TVs, shelves, blinds — mounted properly."
+    },
+    {
+      "ic": "🎨",
+      "t": "Painting & Patching",
+      "d": "Touch-ups, feature walls, plaster repairs, gap-filling."
+    },
+    {
+      "ic": "🌳",
+      "t": "Outdoor & Decks",
+      "d": "Decking, fences, gates, pressure-washing & yard jobs."
+    },
+    {
+      "ic": "🏠",
+      "t": "Property Maintenance",
+      "d": "Ongoing upkeep for landlords, rentals & businesses."
+    },
+    {
+      "ic": "📋",
+      "t": "Odd Jobs",
+      "d": "No job too small — one call for the whole list."
+    }
+  ],
+  "whyHead": "Local handymans you can actually rely on.",
+  "why": [
+    {
+      "t": "On time, every time",
+      "d": "We turn up when we say we will — and call if we're running late."
+    },
+    {
+      "t": "Upfront fixed pricing",
+      "d": "You approve the price before we start. No nasty surprises."
+    },
+    {
+      "t": "Licensed & insured",
+      "d": "Fully licensed, insured, and every job done to standard."
+    },
+    {
+      "t": "Guaranteed work",
+      "d": "We stand behind our workmanship — if it's not right, we fix it."
+    }
+  ],
+  "reviews": [
+    {
+      "n": "Sarah W.",
+      "l": "Ballarat",
+      "t": "Came out same day and sorted it fast — explained everything. Brilliant service."
+    },
+    {
+      "n": "Dave M.",
+      "l": "Ballarat",
+      "t": "Tidy work and a fair fixed price. Wouldn't use anyone else now."
+    },
+    {
+      "n": "Priya K.",
+      "l": "Ballarat",
+      "t": "Quick to respond, friendly, left the place spotless. Highly recommend."
+    }
+  ],
+  "areas": [
+    "Ballarat"
+  ]
+};
+/* ═══════════════════════ (no need to edit below) ═══════════════════════ */
+const $=id=>document.getElementById(id);
+const tel="tel:"+CONFIG.phone.replace(/[^0-9+]/g,"");
+const wa="https://wa.me/"+CONFIG.phone.replace(/[^0-9]/g,"")+"?text="+encodeURIComponent("Hi "+CONFIG.name+", I'd like a quote please.");
+document.documentElement.style.setProperty('--brand',CONFIG.brandColor);
+document.title=CONFIG.name+" — "+CONFIG.trade+" in "+CONFIG.suburb;
+// header/nav/footer text
+[["nv-name",CONFIG.name],["ft-name",CONFIG.name],["nv-phone",CONFIG.phone],["tb-phone",CONFIG.phone],
+ ["tb-hours",CONFIG.hours],["h-head",CONFIG.headline],["h-sub",CONFIG.sub],["sv-p",CONFIG.servicesIntro],
+ ["wy-h",CONFIG.whyHead],["cta-phone",CONFIG.phone],["ft-hours",CONFIG.hours],
+ ["ft-lic","Licensed & insured "+CONFIG.trade.toLowerCase()],["ft-tag","Your trusted local "+CONFIG.trade.toLowerCase()+" in "+CONFIG.region+"."],
+ ["ar-h","Proudly serving "+CONFIG.region],["ar-p","Local to "+CONFIG.suburb+" — fast response across the whole area."],
+ ["cta-h","Need a "+CONFIG.trade.toLowerCase()+" you can trust?"],
+ ["cta-p","Call now for a fast, free, no-obligation quote — or send a message and we'll get straight back to you."],
+ ["h-pill","⭐ Trusted local since "+CONFIG.since]
+].forEach(([id,v])=>{const e=$(id);if(e)e.textContent=v});
+[["nv-mk"],["ft-mk"]].forEach(([id])=>$(id).textContent=CONFIG.icon);
+// phone links
+[["nv-call",tel],["h-call",tel],["cta-call",tel],["bar-call",tel],["ft-call",tel]].forEach(([id,h])=>$(id).href=h);
+$("ft-call").textContent=CONFIG.phone;
+$("cta-wa").href=wa;
+// services
+$("sv-grid").innerHTML=CONFIG.services.map(s=>`<div class="scard reveal"><div class="ic">${s.ic}</div><h3>${s.t}</h3><p>${s.d}</p></div>`).join("");
+// why
+$("wy-list").innerHTML=CONFIG.why.map(w=>`<li><span class="c">✓</span><div><h3>${w.t}</h3><p>${w.d}</p></div></li>`).join("");
+// reviews
+$("rv-grid").innerHTML=CONFIG.reviews.map(r=>`<div class="rev reveal"><div class="stars">★★★★★</div><p>"${r.t}"</p><div class="who">${r.n} <span>· ${r.l}</span></div></div>`).join("");
+// areas
+$("ar-chips").innerHTML=CONFIG.areas.map(a=>`<span class="chip">${a}</span>`).join("");
+// quote job options
+$("q-job").innerHTML='<option value="">What do you need?</option>'+CONFIG.services.map(s=>`<option>${s.t}</option>`).join("")+'<option>Something else</option>';
+// quote form -> opens WhatsApp prefilled (no backend needed)
+$("qform").addEventListener("submit",e=>{
+  e.preventDefault();
+  const msg=`Hi ${CONFIG.name}, I'd like a quote.%0AName: ${encodeURIComponent($("q-name").value)}%0APhone: ${encodeURIComponent($("q-phone").value)}%0AJob: ${encodeURIComponent($("q-job").value||"—")}%0ASuburb: ${encodeURIComponent($("q-sub").value||CONFIG.suburb)}`;
+  window.open("https://wa.me/"+CONFIG.phone.replace(/[^0-9]/g,"")+"?text="+msg,"_blank");
+});
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>
