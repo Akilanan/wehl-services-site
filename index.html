@@ -364,7 +364,8 @@ set("wy-h",C.whyHead||`Local ${tl}s you can actually rely on.`);
 set("wy-tag","ON THE TOOLS, ON TIME");
 set("rv-score",C.rating||"5.0");set("rv-sub",`Rated by locals across ${sub}`);
 set("ar-h",`Servicing ${C.region}`);set("ar-p",`Local to ${sub} — fast response across the whole area.`);
-set("cta-h",`Need a ${tl}? Let's sort it.`);set("cta-p","Call now for a fast, free, no-obligation quote.");
+const art=/^[aeiou]/i.test(tl)?"an":"a";
+set("cta-h",`Need ${art} ${tl}? Let's sort it.`);set("cta-p","Call now for a fast, free, no-obligation quote.");
 set("cta-num",C.phone);set("ft-call",C.phone);set("ft-hours2","Open "+C.hours);
 set("ft-areas","Serving "+C.region);set("ft-tag",`Your trusted local ${tl} — ${C.region}.`);
 set("ft-legal",`© ${C.name}`);
@@ -383,9 +384,11 @@ $("sv-grid").innerHTML=C.services.map((s,i)=>`<div class="svc reveal"><div class
 $("wy-list").innerHTML=C.why.map((w,i)=>`<li><span class="num">${String(i+1).padStart(2,"0")}</span><div><h3>${w.t}</h3><p>${w.d}</p></div></li>`).join("");
 // areas
 $("ar-chips").innerHTML=(C.areas||[sub]).map(a=>`<span class="chip">${a}</span>`).join("");
-// reveal (staggered)
-const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){const e=x.target;const sib=[...e.parentElement.children].filter(n=>n.classList.contains('reveal'));e.style.transitionDelay=(Math.min(sib.indexOf(e),5)*70)+'ms';e.classList.add('in');io.unobserve(e)}}),{threshold:.12});
+// reveal (staggered) — with a fail-safe so content is NEVER left hidden
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){const e=x.target;const sib=[...e.parentElement.children].filter(n=>n.classList.contains('reveal'));e.style.transitionDelay=(Math.min(sib.indexOf(e),5)*70)+'ms';e.classList.add('in');io.unobserve(e)}}),{threshold:.05,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+// safety net: reveal anything still hidden after 3.5s (guards against missed observers / odd viewports)
+setTimeout(()=>document.querySelectorAll('.reveal:not(.in)').forEach(e=>{e.style.transitionDelay='0ms';e.classList.add('in')}),3500);
 
 const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 // rotating hero word (Slack-style word-swap) from the services
