@@ -54,7 +54,7 @@
   .nav-r a.lnk{font-weight:600;font-size:.94rem;color:var(--body)}
   .nav-r a.lnk:hover{color:var(--hi)}
   .nav-call{font-family:var(--disp);font-size:1.15rem;color:var(--ink)!important;letter-spacing:.02em}
-  @media(max-width:860px){.nav-r a.lnk{display:none}}
+  @media(max-width:860px){.nav-r a.lnk{display:none}.nav-call{display:none}.logo{font-size:1.18rem}.logo .bolt{width:28px;height:28px}}
 
   /* HERO — asymmetric, left-weighted, photo-panel right */
   header{border-bottom:1px solid var(--line)}
@@ -395,7 +395,7 @@ const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   if(reduce)return;
   setInterval(()=>{i=(i+1)%words.length;el.style.animation='none';el.offsetHeight;el.textContent=words[i];el.style.animation='';},1900);})();
 // count-up trust numbers on view
-function countUp(el){const m=(el.textContent||'').match(/^(\D*)([\d.]+)(\D*)$/);if(!m)return;const pre=m[1],end=parseFloat(m[2]),suf=m[3],dec=(m[2].split('.')[1]||'').length;let t0=null;
+function countUp(el){const txt=el.textContent||'';if(txt.indexOf('★')>-1)return;const m=txt.match(/^(\D*)([\d.]+)(\D*)$/);if(!m)return;const pre=m[1],end=parseFloat(m[2]),suf=m[3],dec=(m[2].split('.')[1]||'').length;let t0=null;
   function step(t){if(!t0)t0=t;const p=Math.min((t-t0)/900,1);const v=(end*(0.2+0.8*p));el.textContent=pre+(p>=1?end.toFixed(dec):v.toFixed(dec))+suf;if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
 if(!reduce){const tio=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){countUp(x.target);tio.unobserve(x.target)}}),{threshold:.5});
   document.querySelectorAll('.trust .c .n').forEach(n=>tio.observe(n));}
