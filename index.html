@@ -21,9 +21,6 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--body);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  /* film grain — the "a human made this" signal */
-  body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.045;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;position:relative;z-index:2}
   h1,h2,h3{font-family:var(--disp);font-weight:400;color:var(--ink);line-height:.96;letter-spacing:.01em;text-transform:uppercase}
@@ -74,9 +71,7 @@
   .hero .micro{margin-top:24px;display:flex;gap:8px 22px;flex-wrap:wrap;font-size:.9rem;color:var(--mut)}
   .hero .micro b{color:var(--ink);font-weight:700}
   /* photo panel (placeholder for the tradie's real van/team shot) */
-  .hero-r{background:
-      linear-gradient(180deg,rgba(11,12,14,.15),rgba(11,12,14,.85)),
-      repeating-linear-gradient(45deg,#15171c 0 22px,#171a20 22px 44px);
+  .hero-r{background:radial-gradient(120% 90% at 70% 20%,#1b1f26 0%,#0e1014 70%);
     position:relative;display:flex;align-items:flex-end;padding:26px;min-height:340px;border-left:1px solid var(--line)}
   @media(max-width:900px){.hero-r{border-left:0;border-top:1px solid var(--line);min-height:260px}}
   .hero-r .tape{position:absolute;top:24px;right:24px;background:var(--hi);color:#1a1402;font-family:var(--disp);font-size:.9rem;padding:6px 14px;transform:rotate(3deg);letter-spacing:.04em}
@@ -103,12 +98,10 @@
   .svc{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px;grid-column:span 2;position:relative;overflow:hidden;transition:.2s}
   .svc:nth-child(1){grid-column:span 3}.svc:nth-child(2){grid-column:span 3}
   @media(max-width:820px){.svc,.svc:nth-child(1),.svc:nth-child(2){grid-column:span 1}}
-  .svc:hover{border-color:#3a414c;transform:translateY(-3px)}
-  .svc .no{font-family:var(--disp);font-size:1.1rem;color:var(--hi);opacity:.5}
+  .svc:hover{border-color:var(--hi);transform:translateY(-3px);background:#191d23}
+  .svc .mk{width:30px;height:30px;display:block;margin-bottom:4px}
   .svc h3{font-family:var(--sans);font-weight:800;text-transform:none;font-size:1.22rem;color:var(--ink);margin:10px 0 7px;letter-spacing:0;line-height:1.2}
   .svc p{color:var(--mut);font-size:.96rem}
-  .svc::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--hi);transform:scaleY(0);transform-origin:top;transition:.25s}
-  .svc:hover::after{transform:scaleY(1)}
 
   /* why — split, asymmetric */
   .why-wrap{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
@@ -118,7 +111,7 @@
   .why .num{font-family:var(--disp);font-size:1.5rem;color:var(--hi);line-height:1;flex:none;width:42px}
   .why h3{font-family:var(--sans);font-weight:800;text-transform:none;font-size:1.08rem;color:var(--ink);letter-spacing:0}
   .why p{color:var(--mut);font-size:.95rem;margin-top:3px}
-  .vanpanel{background:repeating-linear-gradient(45deg,#15171c 0 22px,#171a20 22px 44px);border:1px solid var(--line);border-radius:10px;min-height:330px;display:flex;align-items:flex-end;padding:24px;position:relative}
+  .vanpanel{background:radial-gradient(110% 90% at 30% 15%,#1b1f26 0%,#0e1014 72%);border:1px solid var(--line);border-radius:10px;min-height:330px;display:flex;align-items:flex-end;padding:24px;position:relative}
   .vanpanel .tag{position:absolute;top:20px;left:20px;font-family:var(--disp);color:var(--hi);font-size:1rem;letter-spacing:.03em}
   .vanpanel .ph{color:var(--mut);font-size:.84rem;border:1.5px dashed #3a414c;border-radius:6px;padding:13px 15px;background:rgba(8,9,10,.5)}
 
@@ -194,13 +187,13 @@
 <div class="trust"><div class="wrap" id="trust-row"></div></div>
 
 <section id="services"><div class="wrap">
-  <div class="head reveal"><div class="kick">What we do</div><h2 id="sv-h"></h2><p id="sv-p"></p></div>
+  <div class="head reveal"><h2 id="sv-h"></h2><p id="sv-p"></p></div>
   <div class="bento" id="sv-grid"></div>
 </div></section>
 
 <section id="why"><div class="wrap why-wrap">
   <div class="reveal">
-    <div class="kick">Why us</div><h2 id="wy-h" style="margin:12px 0 18px;font-size:clamp(1.9rem,4vw,2.7rem)"></h2>
+    <h2 id="wy-h" style="margin:12px 0 18px;font-size:clamp(1.9rem,4vw,2.7rem)"></h2>
     <ul class="why" id="wy-list"></ul>
   </div>
   <div class="vanpanel reveal">
@@ -210,7 +203,7 @@
 </div></section>
 
 <section id="reviews"><div class="wrap">
-  <div class="head reveal"><div class="kick">Reputation</div><h2>Trusted by locals</h2></div>
+  <div class="head reveal"><h2>Trusted by locals</h2></div>
   <div class="gbadge reveal">
     <div><div class="big" id="rv-score"></div><div class="stars">★★★★★</div></div>
     <div><div class="glogo"><b1>G</b1>oogle Reviews</div><div class="sub" id="rv-sub"></div></div>
@@ -219,13 +212,13 @@
 </div></section>
 
 <section id="areas"><div class="wrap reveal">
-  <div class="head"><div class="kick">Service area</div><h2 id="ar-h"></h2><p id="ar-p"></p></div>
+  <div class="head"><h2 id="ar-h"></h2><p id="ar-p"></p></div>
   <div class="chips" id="ar-chips"></div>
 </div></section>
 
 <section id="contact"><div class="wrap reveal">
   <div class="band">
-    <div><div class="kick" style="color:#3a2e02">Free · no-obligation</div><h2 id="cta-h"></h2><p id="cta-p"></p></div>
+    <div><h2 id="cta-h"></h2><p id="cta-p"></p></div>
     <div class="actions">
       <a class="btn" id="cta-call" href="#" style="justify-content:center">📞 Call <span id="cta-num"></span></a>
       <a class="btn" id="cta-wa" target="_blank" rel="noopener" style="justify-content:center;background:#10120f;color:var(--hi)">💬 Message us</a>
@@ -379,9 +372,9 @@ $("trust-row").innerHTML=[
   ["100%","Workmanship guarantee"],
 ].map(([n,l])=>`<div class="c"><div class="n">${n}</div><div class="l">${l}</div></div>`).join("");
 // services — numbered, no emoji
-$("sv-grid").innerHTML=C.services.map((s,i)=>`<div class="svc reveal"><div class="no">${String(i+1).padStart(2,"0")}</div><h3>${s.t}</h3><p>${s.d}</p></div>`).join("");
+$("sv-grid").innerHTML=C.services.map((s)=>`<div class="svc reveal"><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="var(--hi)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg><h3>${s.t}</h3><p>${s.d}</p></div>`).join("");
 // why — numbered
-$("wy-list").innerHTML=C.why.map((w,i)=>`<li><span class="num">${String(i+1).padStart(2,"0")}</span><div><h3>${w.t}</h3><p>${w.d}</p></div></li>`).join("");
+$("wy-list").innerHTML=C.why.map((w)=>`<li><svg class="num" viewBox="0 0 24 24" fill="none" stroke="var(--hi)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px"><path d="M20 6L9 17l-5-5"/></svg><div><h3>${w.t}</h3><p>${w.d}</p></div></li>`).join("");
 // areas
 $("ar-chips").innerHTML=(C.areas||[sub]).map(a=>`<span class="chip">${a}</span>`).join("");
 // reveal (staggered) — with a fail-safe so content is NEVER left hidden
