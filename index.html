@@ -3,240 +3,254 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!-- ════════════════════════════════════════════════════════════════════
-     TRADIE SITE TEMPLATE — by TradieSites. To customise for a prospect,
-     edit ONLY the CONFIG block below (name, trade, phone, suburb, services,
-     colour). Everything else adapts automatically. Then deploy / send.
-     ════════════════════════════════════════════════════════════════════ -->
+<!-- ═══ TRADIE SITE TEMPLATE v2 (human-crafted, anti-AI-slop). Edit only the CONFIG block. ═══ -->
 <title>Loading…</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23123a5e'/%3E%3Cpath d='M9 20l5-9 4 6 2-3 3 6z' fill='%23ffb320'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2310120f'/%3E%3Cpath d='M17 5L8 18h6l-2 9 11-14h-7z' fill='%23ffc21a'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --brand:#123a5e;       /* edit to match the tradie's van/logo */
-    --brand2:#0d2c47;
-    --accent:#f7a823;      /* high-vis CTA colour */
-    --ink:#10151b; --body:#3d4a59; --muted:#6b7888;
-    --bg:#ffffff; --bg2:#f4f7fb; --line:#e3e9f1; --white:#fff;
-    --ok:#1f9d55;
-    --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-    --maxw:1120px;
+    --bg:#0b0c0e; --bg2:#121418; --panel:#16191e; --line:#262b33;
+    --ink:#f3f1ec; --body:#b8bcc4; --mut:#7e8590;
+    --hi:#ffc21a;          /* hi-vis accent (workwear) — edit in CONFIG.brandColor */
+    --hi2:#ff8a00;
+    --disp:'Anton',Impact,'Arial Narrow Bold',sans-serif;
+    --sans:'Figtree',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --max:1180px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:var(--font);color:var(--body);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  body{background:var(--bg);color:var(--body);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  /* film grain — the "a human made this" signal */
+  body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.045;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
   a{color:inherit;text-decoration:none}
-  img{max-width:100%}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
-  h1,h2,h3{color:var(--ink);line-height:1.12;letter-spacing:-.02em;font-weight:800}
-  section{padding:72px 0}
-  .reveal{opacity:0;transform:translateY(22px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;position:relative;z-index:2}
+  h1,h2,h3{font-family:var(--disp);font-weight:400;color:var(--ink);line-height:.96;letter-spacing:.01em;text-transform:uppercase}
+  .hi{color:var(--hi)}
+  .btn{display:inline-flex;align-items:center;gap:9px;background:var(--hi);color:#1a1402;font-weight:800;padding:16px 26px;border-radius:4px;font-size:1rem;border:0;cursor:pointer;transition:transform .12s,background .12s;font-family:var(--sans);letter-spacing:.01em}
+  .btn:hover{transform:translateY(-2px);background:#ffce42}
+  .btn.line{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+  .btn.line:hover{border-color:var(--hi);color:var(--hi);background:transparent}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-  .btn{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#241803;font-weight:800;padding:15px 26px;border-radius:11px;font-size:1.02rem;border:0;cursor:pointer;box-shadow:0 10px 26px -10px rgba(247,168,35,.7);transition:transform .15s}
-  .btn:hover{transform:translateY(-2px)}
-  .btn.ghost{background:transparent;border:2px solid rgba(255,255,255,.5);color:#fff;box-shadow:none}
-  .btn.dark{background:var(--brand);color:#fff;box-shadow:none}
+  .kick{font-family:var(--sans);font-weight:800;font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--hi)}
 
-  /* top trust bar */
-  .tbar{background:var(--brand2);color:#cfe0f0;font-size:.86rem}
-  .tbar .wrap{display:flex;justify-content:space-between;align-items:center;height:38px;gap:14px}
-  .tbar .r{display:flex;gap:18px}@media(max-width:640px){.tbar .r span:nth-child(2){display:none}}
+  /* top bar */
+  .util{background:#08090a;border-bottom:1px solid var(--line);font-size:.82rem;color:var(--mut)}
+  .util .wrap{display:flex;justify-content:space-between;align-items:center;height:36px}
+  .util b{color:var(--ink);font-weight:700}
+  @media(max-width:620px){.util .lic{display:none}}
 
   /* nav */
-  nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
-  .brand{display:flex;align-items:center;gap:11px;font-weight:800;color:var(--ink);font-size:1.18rem}
-  .brand .mk{width:38px;height:38px;border-radius:9px;background:var(--brand);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.2rem}
-  .nlinks{display:flex;gap:26px;align-items:center}
-  .nlinks a{color:var(--body);font-weight:600;font-size:.95rem}
-  .nlinks a:hover{color:var(--brand)}
-  .ncall{font-weight:800;color:var(--brand)!important;font-size:1rem}
-  @media(max-width:780px){.nlinks a:not(.ncall){display:none}}
+  nav{position:sticky;top:0;z-index:40;background:rgba(11,12,14,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:11px;font-family:var(--disp);font-size:1.4rem;color:var(--ink);text-transform:uppercase;letter-spacing:.02em}
+  .logo .bolt{width:34px;height:34px;flex:none}
+  .nav-r{display:flex;align-items:center;gap:24px}
+  .nav-r a.lnk{font-weight:600;font-size:.94rem;color:var(--body)}
+  .nav-r a.lnk:hover{color:var(--hi)}
+  .nav-call{font-family:var(--disp);font-size:1.15rem;color:var(--ink)!important;letter-spacing:.02em}
+  @media(max-width:860px){.nav-r a.lnk{display:none}}
 
-  /* hero */
-  header{position:relative;background:linear-gradient(125deg,var(--brand),var(--brand2));color:#fff;overflow:hidden}
-  header::after{content:"";position:absolute;right:-120px;top:-80px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(247,168,35,.22),transparent 65%)}
-  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:64px 0 70px;position:relative;z-index:1}
-  @media(max-width:880px){.hero{grid-template-columns:1fr;gap:30px;padding:46px 0 54px}}
-  .hero .pill{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:7px 15px;border-radius:100px;font-size:.84rem;font-weight:600;margin-bottom:18px}
-  .hero h1{color:#fff;font-size:clamp(2.1rem,5vw,3.4rem);margin-bottom:16px}
-  .hero p{color:#d6e4f2;font-size:1.16rem;max-width:520px;margin-bottom:26px}
-  .hero .cta{display:flex;gap:13px;flex-wrap:wrap}
-  .hero .feats{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;color:#cfe0f0;font-size:.92rem}
-  .hero .feats b{color:#fff}
-  .hcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:26px;backdrop-filter:blur(4px)}
-  .hcard h3{color:#fff;font-size:1.15rem;margin-bottom:14px}
-  .hcard .qrow{display:flex;flex-direction:column;gap:11px}
-  .hcard input,.hcard select{width:100%;padding:12px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.95);color:var(--ink);font-family:inherit;font-size:.95rem}
-  .hcard .fine{color:#9fb8d0;font-size:.78rem;margin-top:10px;text-align:center}
+  /* HERO — asymmetric, left-weighted, photo-panel right */
+  header{border-bottom:1px solid var(--line)}
+  .hero{display:grid;grid-template-columns:1.15fr .85fr;min-height:560px}
+  @media(max-width:900px){.hero{grid-template-columns:1fr}}
+  .hero-l{padding:64px 24px 60px;max-width:660px;margin-left:auto;width:100%;align-self:center}
+  .hero-l .wrapn{max-width:600px;margin-left:auto;padding-right:30px}
+  @media(max-width:900px){.hero-l .wrapn{padding-right:0}}
+  .rate{display:inline-flex;align-items:center;gap:9px;background:var(--panel);border:1px solid var(--line);border-radius:100px;padding:7px 15px;font-size:.86rem;margin-bottom:22px;color:var(--ink)}
+  .rate .stars{color:var(--hi);letter-spacing:1px}
+  .hero h1{font-size:clamp(2.7rem,6vw,4.6rem);margin-bottom:18px}
+  .hero p.sub{font-size:1.14rem;color:var(--body);margin-bottom:28px;max-width:500px}
+  .hero .cta{display:flex;gap:13px;flex-wrap:wrap;align-items:center}
+  .hero .micro{margin-top:24px;display:flex;gap:8px 22px;flex-wrap:wrap;font-size:.9rem;color:var(--mut)}
+  .hero .micro b{color:var(--ink);font-weight:700}
+  /* photo panel (placeholder for the tradie's real van/team shot) */
+  .hero-r{background:
+      linear-gradient(180deg,rgba(11,12,14,.15),rgba(11,12,14,.85)),
+      repeating-linear-gradient(45deg,#15171c 0 22px,#171a20 22px 44px);
+    position:relative;display:flex;align-items:flex-end;padding:26px;min-height:340px;border-left:1px solid var(--line)}
+  @media(max-width:900px){.hero-r{border-left:0;border-top:1px solid var(--line);min-height:260px}}
+  .hero-r .tape{position:absolute;top:24px;right:24px;background:var(--hi);color:#1a1402;font-family:var(--disp);font-size:.9rem;padding:6px 14px;transform:rotate(3deg);letter-spacing:.04em}
+  .hero-r .ph{color:var(--mut);font-size:.84rem;border:1.5px dashed #3a414c;border-radius:6px;padding:14px 16px;background:rgba(8,9,10,.5);max-width:300px}
+  .hero-r .ph b{color:var(--body)}
+
+  section{padding:78px 0;position:relative}
+  .head{max-width:680px;margin-bottom:42px}
+  .head h2{font-size:clamp(2rem,4.6vw,3rem);margin:12px 0}
+  .head p{color:var(--mut);font-size:1.05rem;max-width:560px}
 
   /* trust strip */
-  .strip{background:var(--bg2);border-bottom:1px solid var(--line)}
-  .strip .wrap{display:flex;justify-content:space-around;gap:18px;flex-wrap:wrap;padding:22px}
-  .strip .it{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ink);font-size:.96rem}
-  .strip .it .i{color:var(--ok);font-size:1.3rem}
+  .trust{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+  @media(max-width:760px){.trust .wrap{grid-template-columns:repeat(2,1fr)}}
+  .trust .c{background:var(--bg2);padding:24px 20px;text-align:center}
+  .trust .c .n{font-family:var(--disp);font-size:1.8rem;color:var(--hi)}
+  .trust .c .l{font-size:.86rem;color:var(--mut);margin-top:3px}
 
-  .stitle{text-align:center;max-width:640px;margin:0 auto 46px}
-  .stitle .k{color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.82rem}
-  .stitle h2{font-size:clamp(1.8rem,4vw,2.5rem);margin:12px 0}
-  .stitle p{color:var(--muted);font-size:1.05rem}
+  /* services — numbered bento, NO emoji */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+  @media(max-width:820px){.bento{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.bento{grid-template-columns:1fr}}
+  .svc{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px;grid-column:span 2;position:relative;overflow:hidden;transition:.2s}
+  .svc:nth-child(1){grid-column:span 3}.svc:nth-child(2){grid-column:span 3}
+  @media(max-width:820px){.svc,.svc:nth-child(1),.svc:nth-child(2){grid-column:span 1}}
+  .svc:hover{border-color:#3a414c;transform:translateY(-3px)}
+  .svc .no{font-family:var(--disp);font-size:1.1rem;color:var(--hi);opacity:.5}
+  .svc h3{font-family:var(--sans);font-weight:800;text-transform:none;font-size:1.22rem;color:var(--ink);margin:10px 0 7px;letter-spacing:0;line-height:1.2}
+  .svc p{color:var(--mut);font-size:.96rem}
+  .svc::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--hi);transform:scaleY(0);transform-origin:top;transition:.25s}
+  .svc:hover::after{transform:scaleY(1)}
 
-  /* services */
-  .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media(max-width:820px){.svc{grid-template-columns:1fr}}
-  .scard{background:var(--white);border:1px solid var(--line);border-radius:15px;padding:26px;transition:.2s}
-  .scard:hover{box-shadow:0 18px 40px -22px rgba(18,58,94,.4);transform:translateY(-4px);border-color:transparent}
-  .scard .ic{width:52px;height:52px;border-radius:12px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:15px}
-  .scard h3{font-size:1.2rem;margin-bottom:7px}
-  .scard p{color:var(--muted);font-size:.96rem}
+  /* why — split, asymmetric */
+  .why-wrap{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+  @media(max-width:860px){.why-wrap{grid-template-columns:1fr;gap:32px}}
+  .why li{display:flex;gap:15px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .why li:last-child{border-bottom:0}
+  .why .num{font-family:var(--disp);font-size:1.5rem;color:var(--hi);line-height:1;flex:none;width:42px}
+  .why h3{font-family:var(--sans);font-weight:800;text-transform:none;font-size:1.08rem;color:var(--ink);letter-spacing:0}
+  .why p{color:var(--mut);font-size:.95rem;margin-top:3px}
+  .vanpanel{background:repeating-linear-gradient(45deg,#15171c 0 22px,#171a20 22px 44px);border:1px solid var(--line);border-radius:10px;min-height:330px;display:flex;align-items:flex-end;padding:24px;position:relative}
+  .vanpanel .tag{position:absolute;top:20px;left:20px;font-family:var(--disp);color:var(--hi);font-size:1rem;letter-spacing:.03em}
+  .vanpanel .ph{color:var(--mut);font-size:.84rem;border:1.5px dashed #3a414c;border-radius:6px;padding:13px 15px;background:rgba(8,9,10,.5)}
 
-  /* why / about split */
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
-  @media(max-width:820px){.split{grid-template-columns:1fr;gap:28px}}
-  .why li{display:flex;gap:13px;margin-bottom:16px;align-items:flex-start}
-  .why .c{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;margin-top:2px}
-  .why h3{font-size:1.05rem;color:var(--ink)}
-  .why p{color:var(--muted);font-size:.94rem}
-  .photo{background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:18px;min-height:330px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:5rem;position:relative;overflow:hidden}
-  .photo span{position:absolute;bottom:18px;left:20px;font-size:.85rem;color:rgba(255,255,255,.7)}
-
-  /* reviews */
-  #reviews{background:var(--bg2)}
-  .revs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media(max-width:820px){.revs{grid-template-columns:1fr}}
-  .rev{background:var(--white);border:1px solid var(--line);border-radius:15px;padding:24px}
-  .rev .stars{color:var(--accent);font-size:1.05rem;letter-spacing:2px}
-  .rev p{margin:12px 0;color:var(--body);font-size:.98rem}
-  .rev .who{font-weight:700;color:var(--ink);font-size:.92rem}
-  .rev .who span{color:var(--muted);font-weight:500}
+  /* reviews — honest Google placeholder, NO fake names */
+  #reviews{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .gbadge{display:flex;align-items:center;gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px 26px;max-width:560px;margin-bottom:24px}
+  .gbadge .big{font-family:var(--disp);font-size:3rem;color:var(--ink);line-height:1}
+  .gbadge .stars{color:var(--hi);font-size:1.2rem;letter-spacing:2px}
+  .gbadge .sub{color:var(--mut);font-size:.9rem;margin-top:3px}
+  .gbadge .glogo{font-weight:800;font-size:1.05rem}.gbadge .glogo b1{color:#4285F4}
+  .revnote{color:var(--mut);font-size:.95rem;border-left:3px solid var(--hi);padding:10px 0 10px 16px;max-width:560px}
 
   /* area */
-  .area{text-align:center}
-  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
-  .chip{background:var(--bg2);border:1px solid var(--line);border-radius:100px;padding:8px 17px;font-weight:600;color:var(--ink);font-size:.92rem}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .chip{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:8px 15px;font-weight:600;color:var(--body);font-size:.92rem}
 
-  /* CTA band */
-  .band{background:linear-gradient(125deg,var(--brand),var(--brand2));color:#fff;text-align:center;border-radius:22px;padding:54px 26px;position:relative;overflow:hidden}
-  .band h2{color:#fff;font-size:clamp(1.7rem,4vw,2.5rem);margin-bottom:12px}
-  .band p{color:#d6e4f2;margin-bottom:24px;font-size:1.1rem}
+  /* CTA */
+  .band{background:var(--hi);color:#1a1402;border-radius:12px;padding:54px 30px;display:grid;grid-template-columns:1.4fr .6fr;gap:24px;align-items:center}
+  @media(max-width:760px){.band{grid-template-columns:1fr;text-align:center}}
+  .band h2{color:#1a1402;font-size:clamp(2rem,4.6vw,3rem)}
+  .band p{color:#3a2e02;margin-top:8px;font-weight:600}
+  .band .btn{background:#10120f;color:var(--hi)}.band .btn:hover{background:#000}
+  .band .actions{display:flex;flex-direction:column;gap:11px}
 
-  footer{background:var(--ink);color:#9aa7b8;padding:40px 0 110px;font-size:.9rem}
-  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  footer .brand{color:#fff}.footer-mk .mk{background:rgba(255,255,255,.1)}
-  footer a{color:#cfe0f0}
+  footer{padding:46px 0 110px;border-top:1px solid var(--line);color:var(--mut);font-size:.9rem}
+  footer .top{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:22px}
+  footer .legal{font-size:.82rem;color:#5a616b;border-top:1px solid var(--line);padding-top:18px}
+  footer a:hover{color:var(--hi)}
 
-  /* sticky mobile call bar */
-  .callbar{position:fixed;bottom:0;left:0;right:0;z-index:50;display:none;gap:0;box-shadow:0 -6px 20px rgba(0,0,0,.18)}
-  .callbar a{flex:1;text-align:center;padding:15px;font-weight:800;color:#fff;font-size:1rem}
-  .callbar .c{background:var(--ok)} .callbar .q{background:var(--accent);color:#241803}
-  @media(max-width:780px){.callbar{display:flex}footer{padding-bottom:90px}}
-  .built{display:block;text-align:center;padding:12px;font-size:.78rem;color:var(--muted);background:var(--bg2)}
+  .callbar{position:fixed;bottom:0;left:0;right:0;z-index:50;display:none;box-shadow:0 -6px 22px rgba(0,0,0,.4)}
+  .callbar a{flex:1;text-align:center;padding:16px;font-weight:800;font-family:var(--sans)}
+  .callbar .c{background:var(--hi);color:#1a1402}.callbar .q{background:#16191e;color:var(--ink);border-top:1px solid var(--line)}
+  @media(max-width:860px){.callbar{display:flex}footer{padding-bottom:92px}}
+  .madeby{text-align:center;font-size:.78rem;color:#4a515b;padding:14px;background:#08090a}
 </style>
 </head>
 <body>
 
-<div class="tbar"><div class="wrap">
-  <span id="tb-lic">Licensed & Fully Insured</span>
-  <div class="r"><span id="tb-hours">Mon–Sat 7am–6pm</span><span>📞 <b id="tb-phone"></b></span></div>
+<div class="util"><div class="wrap">
+  <span class="lic" id="u-lic">Licensed & insured · Lic #<b id="u-licno">[REC/Lic]</b></span>
+  <span>Open <b id="u-hours"></b> · <b id="u-phone"></b></span>
 </div></div>
 
 <nav><div class="wrap">
-  <a class="brand" href="#"><span class="mk" id="nv-mk">⚡</span><span id="nv-name"></span></a>
-  <div class="nlinks">
-    <a href="#services">Services</a><a href="#why">Why us</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
-    <a class="ncall" id="nv-call" href="#">📞 <span id="nv-phone"></span></a>
+  <a class="logo" href="#"><svg class="bolt" viewBox="0 0 32 32"><path d="M17 4L7 19h7l-2 9 12-15h-8z" fill="var(--hi)"/></svg><span id="nv-name"></span></a>
+  <div class="nav-r">
+    <a class="lnk" href="#services">Services</a><a class="lnk" href="#why">Why us</a>
+    <a class="lnk" href="#areas">Areas</a><a class="nav-call" id="nv-call" href="#"></a>
+    <a class="btn" id="nv-quote" href="#contact">Free quote</a>
   </div>
 </div></nav>
 
-<header><div class="wrap hero">
-  <div class="reveal">
-    <span class="pill" id="h-pill">⭐ Trusted local since 2014</span>
+<header><div class="hero">
+  <div class="hero-l reveal"><div class="wrapn">
+    <div class="rate" id="h-rate"><span class="stars">★★★★★</span> <span id="h-ratetext"></span></div>
     <h1 id="h-head"></h1>
-    <p id="h-sub"></p>
+    <p class="sub" id="h-sub"></p>
     <div class="cta">
-      <a class="btn" id="h-call" href="#">📞 Call now</a>
-      <a class="btn ghost" href="#contact">Get a free quote</a>
+      <a class="btn" id="h-call" href="#">Call <span id="h-callnum"></span></a>
+      <a class="btn line" href="#contact">Get a free quote</a>
     </div>
-    <div class="feats">
-      <span>✅ <b>Same-day</b> callouts</span>
-      <span>✅ <b>Upfront</b> pricing</span>
-      <span>✅ <b>5★</b> rated locally</span>
+    <div class="micro">
+      <span><b>Same-day</b> callouts</span><span><b>Upfront</b> fixed pricing</span><span><b>Workmanship</b> guaranteed</span>
     </div>
-  </div>
-  <div class="hcard reveal">
-    <h3>Get a fast free quote</h3>
-    <form class="qrow" id="qform">
-      <input required placeholder="Your name" id="q-name" />
-      <input required placeholder="Phone number" id="q-phone" />
-      <select id="q-job"></select>
-      <input placeholder="Suburb" id="q-sub" />
-      <button class="btn" style="width:100%;justify-content:center" type="submit">Send my request →</button>
-    </form>
-    <div class="fine">No obligation · we reply fast · or just call us direct</div>
+  </div></div>
+  <div class="hero-r reveal">
+    <div class="tape" id="h-tape">LOCAL & LICENSED</div>
+    <div class="ph">📷 <b>Your van, team & real job photos go here</b> — we shoot these with you on sign-up. (Demo placeholder.)</div>
   </div>
 </div></header>
 
-<div class="strip"><div class="wrap">
-  <div class="it"><span class="i">✔</span> Licensed & Insured</div>
-  <div class="it"><span class="i">✔</span> Free Written Quotes</div>
-  <div class="it"><span class="i">✔</span> Workmanship Guaranteed</div>
-  <div class="it"><span class="i">✔</span> Local & Reliable</div>
-</div></div>
+<div class="trust"><div class="wrap" id="trust-row"></div></div>
 
 <section id="services"><div class="wrap">
-  <div class="stitle reveal"><div class="k">What we do</div><h2 id="sv-h">Our Services</h2><p id="sv-p"></p></div>
-  <div class="svc" id="sv-grid"></div>
+  <div class="head reveal"><div class="kick">What we do</div><h2 id="sv-h"></h2><p id="sv-p"></p></div>
+  <div class="bento" id="sv-grid"></div>
 </div></section>
 
-<section id="why" style="background:var(--bg2)"><div class="wrap split">
+<section id="why"><div class="wrap why-wrap">
   <div class="reveal">
-    <div class="stitle" style="text-align:left;margin:0 0 24px"><div class="k">Why choose us</div><h2 id="wy-h"></h2></div>
+    <div class="kick">Why us</div><h2 id="wy-h" style="margin:12px 0 18px;font-size:clamp(1.9rem,4vw,2.7rem)"></h2>
     <ul class="why" id="wy-list"></ul>
   </div>
-  <div class="photo reveal" id="wy-photo">🛠️<span>Add your team / van / job photos here</span></div>
+  <div class="vanpanel reveal">
+    <div class="tag" id="wy-tag"></div>
+    <div class="ph">📷 <b>Real team & before/after job photos</b> slot in here — the #1 trust-builder for trades. (Demo placeholder.)</div>
+  </div>
 </div></section>
 
 <section id="reviews"><div class="wrap">
-  <div class="stitle reveal"><div class="k">Don't take our word for it</div><h2>What local customers say</h2><p>Real reviews from real jobs around the area.</p></div>
-  <div class="revs" id="rv-grid"></div>
+  <div class="head reveal"><div class="kick">Reputation</div><h2>Trusted by locals</h2></div>
+  <div class="gbadge reveal">
+    <div><div class="big" id="rv-score"></div><div class="stars">★★★★★</div></div>
+    <div><div class="glogo"><b1>G</b1>oogle Reviews</div><div class="sub" id="rv-sub"></div></div>
+  </div>
+  <p class="revnote reveal">Your real, live Google reviews wire in here automatically on launch — no fake quotes, just the genuine 5-star feedback your customers already leave.</p>
 </div></section>
 
-<section class="area"><div class="wrap reveal">
-  <div class="stitle" style="margin-bottom:0"><div class="k">Service area</div><h2 id="ar-h"></h2><p id="ar-p"></p></div>
+<section id="areas"><div class="wrap reveal">
+  <div class="head"><div class="kick">Service area</div><h2 id="ar-h"></h2><p id="ar-p"></p></div>
   <div class="chips" id="ar-chips"></div>
 </div></section>
 
 <section id="contact"><div class="wrap reveal">
   <div class="band">
-    <h2 id="cta-h"></h2>
-    <p id="cta-p"></p>
-    <div class="cta" style="justify-content:center">
-      <a class="btn" id="cta-call" href="#">📞 Call <span id="cta-phone"></span></a>
-      <a class="btn dark" id="cta-wa" target="_blank" rel="noopener">💬 WhatsApp us</a>
+    <div><div class="kick" style="color:#3a2e02">Free · no-obligation</div><h2 id="cta-h"></h2><p id="cta-p"></p></div>
+    <div class="actions">
+      <a class="btn" id="cta-call" href="#" style="justify-content:center">📞 Call <span id="cta-num"></span></a>
+      <a class="btn" id="cta-wa" target="_blank" rel="noopener" style="justify-content:center;background:#10120f;color:var(--hi)">💬 Message us</a>
     </div>
   </div>
 </div></section>
 
 <footer><div class="wrap">
-  <div>
-    <a class="brand footer-mk" href="#"><span class="mk" id="ft-mk">⚡</span><span id="ft-name"></span></a>
-    <p style="margin-top:10px" id="ft-tag"></p>
+  <div class="top">
+    <div>
+      <a class="logo" href="#" style="font-size:1.2rem"><svg class="bolt" viewBox="0 0 32 32" style="width:26px;height:26px"><path d="M17 4L7 19h7l-2 9 12-15h-8z" fill="var(--hi)"/></svg><span id="ft-name"></span></a>
+      <p style="margin-top:10px;max-width:340px" id="ft-tag"></p>
+    </div>
+    <div>
+      <p><b style="color:var(--ink)">Call:</b> <a id="ft-call" href="#"></a></p>
+      <p style="margin-top:5px" id="ft-hours2"></p>
+      <p style="margin-top:5px" id="ft-areas"></p>
+    </div>
   </div>
-  <div>
-    <p>📞 <a id="ft-call" href="#"></a></p>
-    <p id="ft-hours" style="margin-top:4px"></p>
-    <p id="ft-lic" style="margin-top:4px"></p>
+  <div class="legal">
+    <span id="ft-legal"></span> · ABN [your ABN] · Licence #[your licence] · $5M public liability insured.
   </div>
 </div></footer>
-<div class="built">Website by <b>TradieSites</b> — fast sites that win tradies more work.</div>
+<div class="madeby">Website by TradieSites — websites that win tradies more work.</div>
 
 <div class="callbar">
-  <a class="c" id="bar-call" href="#">📞 Call now</a>
-  <a class="q" href="#contact">Free quote</a>
+  <a class="c" id="bar-call" href="#">📞 Call now</a><a class="q" href="#contact">Free quote</a>
 </div>
 
 <script>
-/* ═══════════════ EDIT THIS BLOCK PER PROSPECT (≈2 min) ═══════════════ */
+/* ═══════════════ EDIT PER PROSPECT ═══════════════ */
 const CONFIG = {
   "name": "Wehl Services",
   "trade": "Handyman",
@@ -246,8 +260,10 @@ const CONFIG = {
   "region": "Ballarat & surrounds",
   "since": "2015",
   "hours": "Mon–Sat 7am–6pm",
-  "brandColor": "#123a5e",
-  "headline": "Reliable Ballarat Handymans — done right, first time.",
+  "brandColor": "#ffc21a",
+  "rating": "5.0",
+  "reviewCount": "trusted locally",
+  "headline": "",
   "sub": "Fast, friendly, fully-licensed handyman work for homes & businesses. Same-day callouts, upfront pricing, and workmanship we guarantee.",
   "servicesIntro": "No job too big or small — here's how we can help.",
   "services": [
@@ -322,44 +338,46 @@ const CONFIG = {
     "Ballarat"
   ]
 };
-/* ═══════════════════════ (no need to edit below) ═══════════════════════ */
+/* ═══════════════════════════════════════════════════ */
 const $=id=>document.getElementById(id);
-const tel="tel:"+CONFIG.phone.replace(/[^0-9+]/g,"");
-const wa="https://wa.me/"+CONFIG.phone.replace(/[^0-9]/g,"")+"?text="+encodeURIComponent("Hi "+CONFIG.name+", I'd like a quote please.");
-document.documentElement.style.setProperty('--brand',CONFIG.brandColor);
-document.title=CONFIG.name+" — "+CONFIG.trade+" in "+CONFIG.suburb;
-// header/nav/footer text
-[["nv-name",CONFIG.name],["ft-name",CONFIG.name],["nv-phone",CONFIG.phone],["tb-phone",CONFIG.phone],
- ["tb-hours",CONFIG.hours],["h-head",CONFIG.headline],["h-sub",CONFIG.sub],["sv-p",CONFIG.servicesIntro],
- ["wy-h",CONFIG.whyHead],["cta-phone",CONFIG.phone],["ft-hours",CONFIG.hours],
- ["ft-lic","Licensed & insured "+CONFIG.trade.toLowerCase()],["ft-tag","Your trusted local "+CONFIG.trade.toLowerCase()+" in "+CONFIG.region+"."],
- ["ar-h","Proudly serving "+CONFIG.region],["ar-p","Local to "+CONFIG.suburb+" — fast response across the whole area."],
- ["cta-h","Need a "+CONFIG.trade.toLowerCase()+" you can trust?"],
- ["cta-p","Call now for a fast, free, no-obligation quote — or send a message and we'll get straight back to you."],
- ["h-pill","⭐ Trusted local since "+CONFIG.since]
-].forEach(([id,v])=>{const e=$(id);if(e)e.textContent=v});
-[["nv-mk"],["ft-mk"]].forEach(([id])=>$(id).textContent=CONFIG.icon);
-// phone links
-[["nv-call",tel],["h-call",tel],["cta-call",tel],["bar-call",tel],["ft-call",tel]].forEach(([id,h])=>$(id).href=h);
-$("ft-call").textContent=CONFIG.phone;
-$("cta-wa").href=wa;
-// services
-$("sv-grid").innerHTML=CONFIG.services.map(s=>`<div class="scard reveal"><div class="ic">${s.ic}</div><h3>${s.t}</h3><p>${s.d}</p></div>`).join("");
-// why
-$("wy-list").innerHTML=CONFIG.why.map(w=>`<li><span class="c">✓</span><div><h3>${w.t}</h3><p>${w.d}</p></div></li>`).join("");
-// reviews
-$("rv-grid").innerHTML=CONFIG.reviews.map(r=>`<div class="rev reveal"><div class="stars">★★★★★</div><p>"${r.t}"</p><div class="who">${r.n} <span>· ${r.l}</span></div></div>`).join("");
+const C=CONFIG, trade=(C.trade||"Tradie"), tl=trade.toLowerCase(), sub=C.suburb||"your area";
+if(C.brandColor) document.documentElement.style.setProperty('--hi',C.brandColor);
+const tel="tel:"+(C.phone||"").replace(/[^0-9+]/g,"");
+const wa="https://wa.me/"+(C.phone||"").replace(/[^0-9]/g,"")+"?text="+encodeURIComponent("Hi "+C.name+", I'd like a quote please.");
+document.title=`${C.name} | ${trade} ${sub}`;
+const head=C.headline||`${sub}'s trusted ${tl}s.`;
+const subt=C.sub||`Fast, friendly, fully-licensed ${tl} work for homes & businesses across ${C.region}. Same-day callouts, upfront pricing, and workmanship we stand behind.`;
+const set=(id,v)=>{const e=$(id);if(e)e.textContent=v};
+set("nv-name",C.name);set("ft-name",C.name);set("h-head",head);set("h-sub",subt);
+set("h-ratetext",`${C.rating||"5.0"} on Google · ${C.reviewCount||"trusted locally"}`);
+set("h-callnum",C.phone);set("nv-call",C.phone);set("u-phone",C.phone);set("u-hours",C.hours);
+set("h-tape",`LOCAL · ${C.since? "SINCE "+C.since : "LICENSED"}`);
+set("sv-h",`${trade} services, done properly.`);
+set("sv-p",C.servicesIntro||`No job too big or small — here's how we help around ${sub}.`);
+set("wy-h",C.whyHead||`Local ${tl}s you can actually rely on.`);
+set("wy-tag","ON THE TOOLS, ON TIME");
+set("rv-score",C.rating||"5.0");set("rv-sub",`Rated by locals across ${sub}`);
+set("ar-h",`Servicing ${C.region}`);set("ar-p",`Local to ${sub} — fast response across the whole area.`);
+set("cta-h",`Need a ${tl}? Let's sort it.`);set("cta-p","Call now for a fast, free, no-obligation quote.");
+set("cta-num",C.phone);set("ft-call",C.phone);set("ft-hours2","Open "+C.hours);
+set("ft-areas","Serving "+C.region);set("ft-tag",`Your trusted local ${tl} — ${C.region}.`);
+set("ft-legal",`© ${C.name}`);
+[["h-call",tel],["nv-call",tel],["cta-call",tel],["bar-call",tel],["ft-call",tel]].forEach(([i,h])=>{if($(i))$(i).href=h});
+$("cta-wa").href=wa;$("nv-quote");
+// trust row
+$("trust-row").innerHTML=[
+  [(C.since?(new Date().getFullYear()-(+C.since))+"+":"10+"),"Years local"],
+  ["$5M","Public liability"],
+  [(C.rating||"5.0")+"★","Google rated"],
+  ["100%","Workmanship guarantee"],
+].map(([n,l])=>`<div class="c"><div class="n">${n}</div><div class="l">${l}</div></div>`).join("");
+// services — numbered, no emoji
+$("sv-grid").innerHTML=C.services.map((s,i)=>`<div class="svc reveal"><div class="no">${String(i+1).padStart(2,"0")}</div><h3>${s.t}</h3><p>${s.d}</p></div>`).join("");
+// why — numbered
+$("wy-list").innerHTML=C.why.map((w,i)=>`<li><span class="num">${String(i+1).padStart(2,"0")}</span><div><h3>${w.t}</h3><p>${w.d}</p></div></li>`).join("");
 // areas
-$("ar-chips").innerHTML=CONFIG.areas.map(a=>`<span class="chip">${a}</span>`).join("");
-// quote job options
-$("q-job").innerHTML='<option value="">What do you need?</option>'+CONFIG.services.map(s=>`<option>${s.t}</option>`).join("")+'<option>Something else</option>';
-// quote form -> opens WhatsApp prefilled (no backend needed)
-$("qform").addEventListener("submit",e=>{
-  e.preventDefault();
-  const msg=`Hi ${CONFIG.name}, I'd like a quote.%0AName: ${encodeURIComponent($("q-name").value)}%0APhone: ${encodeURIComponent($("q-phone").value)}%0AJob: ${encodeURIComponent($("q-job").value||"—")}%0ASuburb: ${encodeURIComponent($("q-sub").value||CONFIG.suburb)}`;
-  window.open("https://wa.me/"+CONFIG.phone.replace(/[^0-9]/g,"")+"?text="+msg,"_blank");
-});
-// reveal on scroll
+$("ar-chips").innerHTML=(C.areas||[sub]).map(a=>`<span class="chip">${a}</span>`).join("");
+// reveal
 const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
 </script>
